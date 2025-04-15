@@ -24,7 +24,7 @@ final class AppEnvironment: ObservableObject {
   }
   
   @MainActor public func update(action: AppAction) {
-    state = updateState(appState: state, action: action)
+    state = AppState.updateState(appState: state, action: action)
   }
   
 }

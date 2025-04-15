@@ -8,29 +8,6 @@
 
 import Foundation
 
-func updateSettings(settings: Settings, action: SettingsAction) -> Settings {
-  
-  var newSettings = settings
-  
-  switch action {
-    
-  case let .firstTimeRun(firstTimeRunState):
-    newSettings.firstTimeRun = firstTimeRunState
-    
-  case let .setPreferredPlatform(platform):
-    newSettings.preferredMusicPlatform = platform
-    
-  case .reset:
-    if let domain = Bundle.main.bundleIdentifier {
-      UserDefaults.standard.removePersistentDomain(forName: domain)
-    }
-    exit(1)
-    
-  }
-  
-  return newSettings
-}
-
 enum SettingsAction: AppAction {
   
   case firstTimeRun(Bool)
@@ -47,4 +24,28 @@ enum SettingsAction: AppAction {
       return "\(type(of: self)): Performing reset"
     }
   }
+  
+  static func updateSettings(settings: Settings, action: SettingsAction) -> Settings {
+    
+    var newSettings = settings
+    
+    switch action {
+      
+    case let .firstTimeRun(firstTimeRunState):
+      newSettings.firstTimeRun = firstTimeRunState
+      
+    case let .setPreferredPlatform(platform):
+      newSettings.preferredMusicPlatform = platform
+      
+    case .reset:
+      if let domain = Bundle.main.bundleIdentifier {
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+      }
+      exit(1)
+      
+    }
+    
+    return newSettings
+  }
+  
 }
