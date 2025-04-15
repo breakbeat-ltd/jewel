@@ -6,19 +6,8 @@
 	objectVersion = 70;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		D22155822481114B00A1F04A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22155812481114B00A1F04A /* Assets.xcassets */; };
-		D2668D4924B1DBB0002922F4 /* searchScreenshotData.json in Resources */ = {isa = PBXBuildFile; fileRef = D2668D4824B1DBB0002922F4 /* searchScreenshotData.json */; };
-		D27FB8202486B46D0014C05D /* fa-brands.otf in Resources */ = {isa = PBXBuildFile; fileRef = D27FB81F2486B46D0014C05D /* fa-brands.otf */; };
-		D2DB0FCE24A7782B006A5835 /* stateScreenshotData.json in Resources */ = {isa = PBXBuildFile; fileRef = D2DB0FCA24A7782B006A5835 /* stateScreenshotData.json */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		D22155782481114A00A1F04A /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D22155812481114B00A1F04A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D2668D4824B1DBB0002922F4 /* searchScreenshotData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = searchScreenshotData.json; sourceTree = "<group>"; };
-		D27FB81F2486B46D0014C05D /* fa-brands.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-brands.otf"; sourceTree = "<group>"; };
-		D2DB0FCA24A7782B006A5835 /* stateScreenshotData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stateScreenshotData.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -26,6 +15,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppEnvironment.swift,
+				Assets.xcassets,
 				JewelApp.swift,
 			);
 			target = D22155772481114A00A1F04A /* Stacks */;
@@ -33,6 +23,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		D2FA5F242DAF06CC003921C7 /* Screenshot Data */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Screenshot Data"; sourceTree = "<group>"; };
 		D2FC69EC2DAEFB08006F744D /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D2FC69EF2DAEFB09006F744D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
 		D2FC69FA2DAEFB0F006F744D /* State */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = State; sourceTree = "<group>"; };
 		D2FC6A0A2DAEFB14006F744D /* Actions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Actions; sourceTree = "<group>"; };
@@ -77,28 +68,9 @@
 				D2FC6A2D2DAEFB18006F744D /* Views */,
 				D2FC6A4A2DAEFB1B006F744D /* Services */,
 				D2FC6A502DAEFB1F006F744D /* Util */,
-				D22155812481114B00A1F04A /* Assets.xcassets */,
-				D27FB81E2486B4550014C05D /* Fonts */,
-				D2DB0FB824A777D8006A5835 /* Screenshot Data */,
+				D2FA5F242DAF06CC003921C7 /* Screenshot Data */,
 			);
 			path = Jewel;
-			sourceTree = "<group>";
-		};
-		D27FB81E2486B4550014C05D /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				D27FB81F2486B46D0014C05D /* fa-brands.otf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
-		D2DB0FB824A777D8006A5835 /* Screenshot Data */ = {
-			isa = PBXGroup;
-			children = (
-				D2DB0FCA24A7782B006A5835 /* stateScreenshotData.json */,
-				D2668D4824B1DBB0002922F4 /* searchScreenshotData.json */,
-			);
-			path = "Screenshot Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,6 +89,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				D2FA5F242DAF06CC003921C7 /* Screenshot Data */,
 				D2FC69FA2DAEFB0F006F744D /* State */,
 				D2FC6A0A2DAEFB14006F744D /* Actions */,
 				D2FC6A2D2DAEFB18006F744D /* Views */,
@@ -171,10 +144,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2DB0FCE24A7782B006A5835 /* stateScreenshotData.json in Resources */,
-				D27FB8202486B46D0014C05D /* fa-brands.otf in Resources */,
-				D22155822481114B00A1F04A /* Assets.xcassets in Resources */,
-				D2668D4924B1DBB0002922F4 /* searchScreenshotData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

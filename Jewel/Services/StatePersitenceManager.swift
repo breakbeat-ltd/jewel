@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StatePersitenceManager {
+enum StatePersitenceManager {
   
   static func save(_ state: AppState) {
     do {

@@ -26,10 +26,6 @@
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>We use the Apple Music catalogue to browse and save music.</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>fa-brands.otf</string>
-	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
