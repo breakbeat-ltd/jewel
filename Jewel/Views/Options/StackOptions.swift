@@ -43,7 +43,7 @@ struct StackOptions: View {
                 .onAppear {
                   self.newStackName = stack.name
                 }
-                .onChange(of: nameFocussed) { _ in
+                .onChange(of: nameFocussed) {
                   if !newStackName.isEmpty && newStackName != stack.name {
                     app.update(action: LibraryAction.setStackName(name: newStackName.trimmingCharacters(in: .whitespaces), stackId: stack.id))
                   }
