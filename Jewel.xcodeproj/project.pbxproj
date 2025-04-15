@@ -23,7 +23,6 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D2FA5F242DAF06CC003921C7 /* Screenshot Data */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Screenshot Data"; sourceTree = "<group>"; };
 		D2FC69EC2DAEFB08006F744D /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D2FC69EF2DAEFB09006F744D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
 		D2FC69FA2DAEFB0F006F744D /* State */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = State; sourceTree = "<group>"; };
 		D2FC6A0A2DAEFB14006F744D /* Actions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Actions; sourceTree = "<group>"; };
@@ -68,7 +67,6 @@
 				D2FC6A2D2DAEFB18006F744D /* Views */,
 				D2FC6A4A2DAEFB1B006F744D /* Services */,
 				D2FC6A502DAEFB1F006F744D /* Util */,
-				D2FA5F242DAF06CC003921C7 /* Screenshot Data */,
 			);
 			path = Jewel;
 			sourceTree = "<group>";
@@ -89,7 +87,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				D2FA5F242DAF06CC003921C7 /* Screenshot Data */,
 				D2FC69FA2DAEFB0F006F744D /* State */,
 				D2FC6A0A2DAEFB14006F744D /* Actions */,
 				D2FC6A2D2DAEFB18006F744D /* Views */,

@@ -64,7 +64,7 @@ struct RichAlert<Buttons: View, Content: View>: View {
           .padding()
         }
         .frame(width: responsiveWidth(viewWidth: geo.size.width), height: responsiveHeight(viewHeight: geo.size.height))
-        Image("primary-logo")
+        Image("PrimaryLogo")
           .resizable()
           .frame(width: 75, height: 75)
           .cornerRadius(5)
