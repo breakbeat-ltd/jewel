@@ -14,7 +14,6 @@
 		D21C40742A9E9C0500BA01AF /* StatePersitenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21C40732A9E9C0500BA01AF /* StatePersitenceManager.swift */; };
 		D21C40762A9EA6E500BA01AF /* AppState_v2_0.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21C40752A9EA6E500BA01AF /* AppState_v2_0.swift */; };
 		D22155822481114B00A1F04A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22155812481114B00A1F04A /* Assets.xcassets */; };
-		D22155852481114B00A1F04A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22155842481114B00A1F04A /* Preview Assets.xcassets */; };
 		D22155882481114B00A1F04A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22155862481114B00A1F04A /* LaunchScreen.storyboard */; };
 		D23197C22492DACD00C09977 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23197C12492DACD00C09977 /* Constants.swift */; };
 		D23C398E248FD2DF00AD237E /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23C398D248FD2DF00AD237E /* Welcome.swift */; };
@@ -71,7 +70,6 @@
 		D21C40752A9EA6E500BA01AF /* AppState_v2_0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState_v2_0.swift; sourceTree = "<group>"; };
 		D22155782481114A00A1F04A /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22155812481114B00A1F04A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D22155842481114B00A1F04A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D22155872481114B00A1F04A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D22155892481114B00A1F04A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D23197C12492DACD00C09977 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -161,17 +159,8 @@
 				D27FB81E2486B4550014C05D /* Fonts */,
 				D2DB0FB824A777D8006A5835 /* Screenshot Data */,
 				D22155862481114B00A1F04A /* LaunchScreen.storyboard */,
-				D22155832481114B00A1F04A /* Preview Content */,
 			);
 			path = Jewel;
-			sourceTree = "<group>";
-		};
-		D22155832481114B00A1F04A /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				D22155842481114B00A1F04A /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		D24925922481409D0011F409 /* Actions */ = {
@@ -379,7 +368,6 @@
 			files = (
 				D2DB0FCE24A7782B006A5835 /* stateScreenshotData.json in Resources */,
 				D22155882481114B00A1F04A /* LaunchScreen.storyboard in Resources */,
-				D22155852481114B00A1F04A /* Preview Assets.xcassets in Resources */,
 				D27FB8202486B46D0014C05D /* fa-brands.otf in Resources */,
 				D22155822481114B00A1F04A /* Assets.xcassets in Resources */,
 				D2668D4924B1DBB0002922F4 /* searchScreenshotData.json in Resources */,
@@ -582,7 +570,6 @@
 				CODE_SIGN_ENTITLEMENTS = Jewel/App/Jewel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Jewel/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Z89R2M235;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Jewel/App/Info.plist;
@@ -609,7 +596,6 @@
 				CODE_SIGN_ENTITLEMENTS = Jewel/App/Jewel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Jewel/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Z89R2M235;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Jewel/App/Info.plist;
