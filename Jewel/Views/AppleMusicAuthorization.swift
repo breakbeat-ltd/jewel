@@ -17,7 +17,7 @@ struct AppleMusicAuthorization: View {
   
   var body: some View {
     VStack {
-      Image("applemusic-icon")
+      Image("AppleMusicIcon")
         .resizable()
         .frame(width: 75, height: 75)
         .cornerRadius(5)

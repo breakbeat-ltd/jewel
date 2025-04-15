@@ -15,7 +15,7 @@ struct JewelApp: App {
   @State var appleMusicAuthorizationStatus = MusicAuthorization.currentStatus
   
   init() {
-    FontRegistrar.registerFont(named: "font-awesome-brands")
+    FontRegistrar.registerFont(name: "FontAwesomeBrands")
   }
   
   var body: some Scene {

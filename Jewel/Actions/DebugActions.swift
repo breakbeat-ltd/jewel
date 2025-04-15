@@ -6,7 +6,7 @@
 //  Copyright © 2023 Breakbeat Ltd. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import MusicKit
 
 enum DebugAction: AppAction {
@@ -27,36 +27,39 @@ enum DebugAction: AppAction {
     switch action {
       
     case .loadScreenshotState:
-      if let url = Bundle.main.url(forResource: "stateScreenshotData", withExtension: "json") {
-        do {
-          let data = try Data(contentsOf: url)
-          let decoder = JSONDecoder()
-          decoder.keyDecodingStrategy = .convertFromSnakeCase
-          let screenshotState = try decoder.decode(AppState.self, from: data)
-          newState = screenshotState
-        } catch {
-          JewelLogger.debugAction.debug("💎 Screenshot Generator > Error with state: \(error.localizedDescription)")
-        }
+      guard let stateScreenshotData = NSDataAsset(name: "StateScreenshotData") else {
+        JewelLogger.debugAction.debug("💎 Screenshot Generator > Could not find screenshot data, state unchanged")
+        return state
       }
       
-      if let url = Bundle.main.url(forResource: "searchScreenshotData", withExtension: "json") {
-        do {
-          let data = try Data(contentsOf: url)
-          
-          let decoder = JSONDecoder()
-          decoder.keyDecodingStrategy = .convertFromSnakeCase
-          let searchResults = try decoder.decode(MusicItemCollection<Album>.self, from: data)
-          newState.search.results = searchResults
-          
-        } catch {
-          JewelLogger.debugAction.debug("💎 Screenshot Generator > Error with search results: \(error.localizedDescription)")
-        }
+      do {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let screenshotState = try decoder.decode(AppState.self, from: stateScreenshotData.data)
+        newState = screenshotState
+      } catch {
+        JewelLogger.debugAction.debug("💎 Screenshot Generator > Error decoding screenshot state: \(error.localizedDescription)")
       }
+    }
+    
+    guard let searchScreenshotData = NSDataAsset(name: "SearchScreenshotData") else {
+      JewelLogger.debugAction.debug("💎 Screenshot Generator > Could not find search data, state unchanged")
+      return state
+    }
+    
+    do {
+      let decoder = JSONDecoder()
+      decoder.keyDecodingStrategy = .convertFromSnakeCase
+      let searchResults = try decoder.decode(MusicItemCollection<Album>.self, from: searchScreenshotData.data)
+      newState.search.results = searchResults
       
+    } catch {
+      JewelLogger.debugAction.debug("💎 Screenshot Generator > Error decoding search results: \(error.localizedDescription)")
     }
     
     return newState
-    
   }
+  
 }
+
 

@@ -18,13 +18,15 @@ struct AppState: Codable {
   var settings: Settings
   var library: Library
   var search = Search()
-
+  
   enum CodingKeys: String, CodingKey {
     case settings = "options"
     case library
   }
   
   static func updateState(appState: AppState, action: AppAction) -> AppState {
+    
+    JewelLogger.stateUpdate.info("💎 State Update > \(action.description)")
     
     var newAppState = appState
     
@@ -48,8 +50,6 @@ struct AppState: Codable {
     default: break
       
     }
-    
-      JewelLogger.stateUpdate.info("💎 State Update > \(action.description)")
     
     return newAppState
   }

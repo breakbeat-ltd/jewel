@@ -10,8 +10,8 @@ import SwiftUI
 
 enum FontRegistrar {
   
-  static func registerFont(named name: String) {
-    guard let asset = NSDataAsset(name: "Fonts/\(name)", bundle: Bundle.main),
+  static func registerFont(name: String) {
+    guard let asset = NSDataAsset(name: name),
           let provider = CGDataProvider(data: asset.data as NSData),
           let font = CGFont(provider) else {
       JewelLogger.runtime.error("💎 Runtime > Failed to load font from asset")
