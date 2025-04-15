@@ -9,66 +9,6 @@
 import Foundation
 import SwiftUI
 
-func updateNavigation(navigation: Navigation, action: NavigationAction) -> Navigation {
-  
-  var newNavigation = navigation
-  
-  switch action {
-    
-  case let .switchTab(toTab):
-    newNavigation.selectedTab = toTab
-  
-  case let .setActiveStackId(stackId):
-    newNavigation.activeStackId = stackId
-    
-  case let .setActiveSlotIndex(slotIndex):
-    newNavigation.activeSlotIndex = slotIndex
-  
-  case let .showSettings(showSettingsState):
-    newNavigation.showSettings = showSettingsState
-    
-  case let .showSearch(showSearchState):
-    newNavigation.showSearch = showSearchState
-
-  case let .showStack(showStackState):
-    newNavigation.showStack = showStackState
-  
-  case let .showStackOptions(showStackOptionsState):
-    newNavigation.showStackOptions = showStackOptionsState
-  
-  case let .showLibraryOptions(showLibraryOptionsState):
-    newNavigation.showLibraryOptions = showLibraryOptionsState
-    
-  case let .showAlbumDetail(showAlbumDetailState):
-    newNavigation.showAlbumDetail = showAlbumDetailState
-  
-  case let .showPlaybackLinks(showPlaybackLinksState):
-    newNavigation.showPlaybackLinks = showPlaybackLinksState
-  
-  case let .gettingPlaybackLinks(gettingPlaybackLinksState):
-    newNavigation.gettingPlaybackLinks = gettingPlaybackLinksState
-  
-  case let .gettingSearchResults(gettingSearchResultsState):
-    newNavigation.gettingSearchResults = gettingSearchResultsState
-    
-  case let .setStackViewHeight(viewHeight):
-    newNavigation.stackViewHeight = viewHeight
-  
-  case let .setLibraryViewHeight(viewHeight):
-  newNavigation.libraryViewHeight = viewHeight
-  
-  case .reset:
-    newNavigation = Navigation(onRotationId: newNavigation.onRotationId, activeStackId: newNavigation.activeStackId)
-    
-  case .toggleDebug:
-    newNavigation.showDebugMenu.toggle()
-  
-  }
-  
-  return newNavigation
-  
-}
-
 enum NavigationAction: AppAction {
   
   case switchTab(to: Navigation.Tab)
@@ -124,4 +64,65 @@ enum NavigationAction: AppAction {
       return "\(type(of: self)): Toggling debug"
     }
   }
+  
+  static func updateNavigation(navigation: Navigation, action: NavigationAction) -> Navigation {
+    
+    var newNavigation = navigation
+    
+    switch action {
+      
+    case let .switchTab(toTab):
+      newNavigation.selectedTab = toTab
+    
+    case let .setActiveStackId(stackId):
+      newNavigation.activeStackId = stackId
+      
+    case let .setActiveSlotIndex(slotIndex):
+      newNavigation.activeSlotIndex = slotIndex
+    
+    case let .showSettings(showSettingsState):
+      newNavigation.showSettings = showSettingsState
+      
+    case let .showSearch(showSearchState):
+      newNavigation.showSearch = showSearchState
+
+    case let .showStack(showStackState):
+      newNavigation.showStack = showStackState
+    
+    case let .showStackOptions(showStackOptionsState):
+      newNavigation.showStackOptions = showStackOptionsState
+    
+    case let .showLibraryOptions(showLibraryOptionsState):
+      newNavigation.showLibraryOptions = showLibraryOptionsState
+      
+    case let .showAlbumDetail(showAlbumDetailState):
+      newNavigation.showAlbumDetail = showAlbumDetailState
+    
+    case let .showPlaybackLinks(showPlaybackLinksState):
+      newNavigation.showPlaybackLinks = showPlaybackLinksState
+    
+    case let .gettingPlaybackLinks(gettingPlaybackLinksState):
+      newNavigation.gettingPlaybackLinks = gettingPlaybackLinksState
+    
+    case let .gettingSearchResults(gettingSearchResultsState):
+      newNavigation.gettingSearchResults = gettingSearchResultsState
+      
+    case let .setStackViewHeight(viewHeight):
+      newNavigation.stackViewHeight = viewHeight
+    
+    case let .setLibraryViewHeight(viewHeight):
+    newNavigation.libraryViewHeight = viewHeight
+    
+    case .reset:
+      newNavigation = Navigation(onRotationId: newNavigation.onRotationId, activeStackId: newNavigation.activeStackId)
+      
+    case .toggleDebug:
+      newNavigation.showDebugMenu.toggle()
+    
+    }
+    
+    return newNavigation
+    
+  }
+  
 }
