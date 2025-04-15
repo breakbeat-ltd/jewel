@@ -6,7 +6,6 @@
 //  Copyright © 2020 Breakbeat Ltd. All rights reserved.
 //
 
-import OSLog
 import SwiftUI
 import MusicKit
 
@@ -14,6 +13,10 @@ import MusicKit
 struct JewelApp: App {
   
   @State var appleMusicAuthorizationStatus = MusicAuthorization.currentStatus
+  
+  init() {
+    FontRegistrar.registerFont(named: "font-awesome-brands")
+  }
   
   var body: some Scene {
     WindowGroup {
@@ -26,11 +29,4 @@ struct JewelApp: App {
     }
   }
   
-}
-
-struct JewelLogger {
-    static let persistence = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "persistence")
-    static let stateUpdate = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "stateUpdate")
-    static let recordStore = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "recordStore")
-    static let debugAction = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "debugAction")
 }

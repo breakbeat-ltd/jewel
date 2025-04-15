@@ -13,7 +13,7 @@ enum RecordStoreError: Error {
   case NotFound(MusicItemID)
 }
 
-class RecordStore {
+enum RecordStore {
   
   static func search(for searchTerm: String) async throws -> MusicItemCollection<Album> {
     JewelLogger.recordStore.info("💎 Record Store > Searching for '\(searchTerm)'")
