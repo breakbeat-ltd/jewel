@@ -102,7 +102,7 @@ struct Footer: View {
     VStack {
       Text("🎵 + 📱 = 🙌")
         .padding(.bottom)
-      Text("© 2020 Breakbeat Ltd.")
+      Text("© 2025 Breakbeat Ltd.")
       Text(Bundle.main.buildNumber)
         .foregroundColor(Color.secondary)
     }
