@@ -31,26 +31,30 @@ struct PlaybackLinks: View {
   
   var body: some View {
     if let url = playbackLink.url {
-      ZStack {
-        PlaybackLink(url: url, platformName: playbackLink.name)
-        HStack {
-          Spacer()
-          if let playbackLinks = playbackLinks {
-            Button {
-              app.update(action: NavigationAction.showPlaybackLinks(true))
-            } label: {
-              Text(Image(systemName: "link"))
-                .foregroundColor(.secondary)
-            }
-            .sheet(isPresented: showPlaybackLinks) {
-              AlternativePlaybackLinks(playbackLinks: playbackLinks)
-                .environmentObject(app)
-            }
-            .padding()
-          } else if app.state.navigation.gettingPlaybackLinks {
-            ProgressView()
-              .padding()
+      HStack {
+        Button {
+          UIApplication.shared.open(url)
+        } label: {
+            Text("\(Image(systemName: "play.fill")) \(playbackLink.name)")
+            .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.borderedProminent)
+        Spacer()
+        if let playbackLinks = playbackLinks {
+          Button {
+            app.update(action: NavigationAction.showPlaybackLinks(true))
+          } label: {
+            Text("\(Image(systemName: "play")) Other")
+              .foregroundColor(.secondary)
           }
+          .buttonStyle(.bordered)
+          .sheet(isPresented: showPlaybackLinks) {
+            AlternativePlaybackLinks(playbackLinks: playbackLinks)
+              .environmentObject(app)
+          }
+        } else if app.state.navigation.gettingPlaybackLinks {
+          ProgressView()
+            .padding()
         }
       }
     }

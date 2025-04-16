@@ -11,8 +11,6 @@ import MusicKit
 
 struct AlbumDetail: View {
   
-  @Environment(\.horizontalSizeClass) var horizontalSizeClass
-  
   @EnvironmentObject var app: AppEnvironment
   
   private var stack: Stack {
@@ -30,7 +28,7 @@ struct AlbumDetail: View {
   var body: some View {
     NavigationView {
       Group {
-        if horizontalSizeClass == .compact {
+        if UIDevice.current.userInterfaceIdiom == .phone {
           Compact(slot: slot)
         } else {
           Regular(slot: slot)
