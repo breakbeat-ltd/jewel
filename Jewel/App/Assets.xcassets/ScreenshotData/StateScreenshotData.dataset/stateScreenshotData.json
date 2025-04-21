@@ -4,7 +4,7 @@
     "first_time_run" : false
   },
   "library" : {
-    "stacks" : [
+    "collections" : [
       {
         "id" : "AE652C2A-D8E8-4027-8C13-C5149D8613FD",
         "name" : "Road Trip 2023",
