@@ -27,7 +27,7 @@ struct Home: View {
               .transition(.move(edge: .leading))
           }
           if app.state.navigation.selectedTab == .library {
-            StackLibrary()
+            CollectionLibrary()
               .transition(.move(edge: .trailing))
           }
         }

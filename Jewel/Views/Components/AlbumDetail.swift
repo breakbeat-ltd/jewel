@@ -13,16 +13,16 @@ struct AlbumDetail: View {
   
   @EnvironmentObject var app: AppEnvironment
   
-  private var stack: Stack {
+  private var collection: Collection {
     if app.state.navigation.onRotationActive {
       return app.state.library.onRotation
     } else {
-      return app.state.library.stacks.first(where: { $0.id == app.state.navigation.activeStackId })!
+      return app.state.library.collections.first(where: { $0.id == app.state.navigation.activeCollectionId })!
     }
   }
   
   private var slot: Slot {
-    stack.slots[app.state.navigation.activeSlotIndex]
+    collection.slots[app.state.navigation.activeSlotIndex]
   }
   
   var body: some View {
@@ -45,7 +45,7 @@ struct AlbumDetail: View {
           },
         trailing:
           Button {
-            app.update(action: LibraryAction.removeAlbumFromSlot(slotIndex: app.state.navigation.activeSlotIndex, stackId: app.state.navigation.activeStackId!))
+            app.update(action: LibraryAction.removeAlbumFromSlot(slotIndex: app.state.navigation.activeSlotIndex, collectionId: app.state.navigation.activeCollectionId!))
             app.update(action: NavigationAction.showAlbumDetail(false))
           } label: {
             Text(Image(systemName: "eject"))

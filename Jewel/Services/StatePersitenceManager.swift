@@ -43,7 +43,7 @@ enum StatePersitenceManager {
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       var state = try decoder.decode(AppState.self, from: savedState)
       state.navigation.onRotationId = state.library.onRotation.id
-      state.navigation.activeStackId = state.library.onRotation.id
+      state.navigation.activeCollectionId = state.library.onRotation.id
       JewelLogger.persistence.info("💎 Persistence > Loaded a current saved state")
       return state
     } catch {
@@ -56,11 +56,11 @@ enum StatePersitenceManager {
   static func newState() -> AppState {
     
     JewelLogger.persistence.info("💎 Persistence > Creating a new state")
-    let onRotationStack = Stack(name: Navigation.Tab.onRotation.rawValue)
-    let library = Library(onRotation: onRotationStack, stacks: [Stack]())
+    let onRotationStack = Collection(name: Navigation.Tab.onRotation.rawValue)
+    let library = Library(onRotation: onRotationStack, collections: [Collection]())
     var state = AppState(settings: Settings(), library: library)
     state.navigation.onRotationId = onRotationStack.id
-    state.navigation.activeStackId = onRotationStack.id
+    state.navigation.activeCollectionId = onRotationStack.id
     JewelLogger.persistence.info("💎 Persistence > Created a new state")
     return state
   }
@@ -100,28 +100,28 @@ enum StatePersitenceManager {
           migratedOnRotationSlots.append(migratedSlot)
         }
         
-        let migratedOnRotationStack = Stack(id: v3_0_State.library.onRotation.id,
-                                            name: v3_0_State.library.onRotation.name,
-                                            slots: migratedOnRotationSlots)
+        let migratedOnRotationCollection = Collection(id: v3_0_State.library.onRotation.id,
+                                                      name: v3_0_State.library.onRotation.name,
+                                                      slots: migratedOnRotationSlots)
         
-        var migratedLibraryStacks = [Stack]()
+        var migratedLibraryCollections = [Collection]()
         for oldStack in v3_0_State.library.stacks {
-          var migratedStackSlots = [Slot]()
+          var migratedCollectionSlots = [Slot]()
           for oldSlot in oldStack.slots {
             let migratedSlot = Slot(id: oldSlot.id,
                                     album: oldSlot.album,
                                     playbackLinks: oldSlot.playbackLinks)
-            migratedStackSlots.append(migratedSlot)
+            migratedCollectionSlots.append(migratedSlot)
           }
           
-          let migratedStack = Stack(id: oldStack.id,
-                                    name: oldStack.name,
-                                    slots: migratedStackSlots)
-          migratedLibraryStacks.append(migratedStack)
+          let migratedCollection = Collection(id: oldStack.id,
+                                              name: oldStack.name,
+                                              slots: migratedCollectionSlots)
+          migratedLibraryCollections.append(migratedCollection)
         }
         
-        let migratedLibrary = Library(onRotation: migratedOnRotationStack,
-                                      stacks: migratedLibraryStacks)
+        let migratedLibrary = Library(onRotation: migratedOnRotationCollection,
+                                      collections: migratedLibraryCollections)
         
         let v3_1_State = AppState(settings: migratedSettings,
                                   library: migratedLibrary)
@@ -170,11 +170,11 @@ enum StatePersitenceManager {
           migratedOnRotationSlots.append(migratedSlot)
         }
         
-        let migratedOnRotationStack = Stack(id: v2_1_State.library.onRotation.id,
+        let migratedOnRotationStack = Collection(id: v2_1_State.library.onRotation.id,
                                             name: v2_1_State.library.onRotation.name,
                                             slots: migratedOnRotationSlots)
         
-        var migratedLibraryStacks = [Stack]()
+        var migratedLibraryStacks = [Collection]()
         for oldCollection in v2_1_State.library.collections {
           var migratedCollectionSlots = [Slot]()
           for oldSlot in oldCollection.slots {
@@ -184,14 +184,14 @@ enum StatePersitenceManager {
             migratedCollectionSlots.append(migratedSlot)
           }
           
-          let migratedStack = Stack(id: oldCollection.id,
+          let migratedStack = Collection(id: oldCollection.id,
                                     name: oldCollection.name,
                                     slots: migratedCollectionSlots)
           migratedLibraryStacks.append(migratedStack)
         }
         
         let migratedLibrary = Library(onRotation: migratedOnRotationStack,
-                                      stacks: migratedLibraryStacks)
+                                      collections: migratedLibraryStacks)
         
         let v3_0_State = AppState(settings: migratedSettings,
                                   library: migratedLibrary)

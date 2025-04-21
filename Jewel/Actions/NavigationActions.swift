@@ -12,18 +12,18 @@ import SwiftUI
 enum NavigationAction: AppAction {
   
   case switchTab(to: Navigation.Tab)
-  case setActiveStackId(stackId: UUID)
+  case setActiveCollectionId(collectionId: UUID)
   case setActiveSlotIndex(slotIndex: Int)
   case showSettings(Bool)
   case showSearch(Bool)
-  case showStack(Bool)
-  case showStackOptions(Bool)
+  case showCollection(Bool)
+  case showCollectionOptions(Bool)
   case showLibraryOptions(Bool)
   case showAlbumDetail(Bool)
   case showPlaybackLinks(Bool)
   case gettingPlaybackLinks(Bool)
   case gettingSearchResults(Bool)
-  case setStackViewHeight(viewHeight: CGFloat)
+  case setCollectionViewHeight(viewHeight: CGFloat)
   case setLibraryViewHeight(viewHeight: CGFloat)
   case reset
   case toggleDebug
@@ -32,18 +32,18 @@ enum NavigationAction: AppAction {
     switch self {
     case .switchTab(let tab):
       return "\(type(of: self)): Switching to \(tab.rawValue) tab"
-    case .setActiveStackId(let stackId):
-      return "\(type(of: self)): Setting active stack to \(stackId)"
+    case .setActiveCollectionId(let collectionId):
+      return "\(type(of: self)): Setting active collection to \(collectionId)"
     case .setActiveSlotIndex(let slotId):
       return "\(type(of: self)): Setting active slot to \(slotId)"
     case .showSettings(let showing):
       return "\(type(of: self)): \(showing ? "Showing" : "Closing") settings"
     case .showSearch(let showing):
       return "\(type(of: self)): \(showing ? "Showing" : "Closing") search"
-    case .showStack(let showing):
-      return "\(type(of: self)): \(showing ? "Showing" : "Closing") stack"
-    case .showStackOptions(let showing):
-      return "\(type(of: self)): \(showing ? "Showing" : "Closing") stack options"
+    case .showCollection(let showing):
+      return "\(type(of: self)): \(showing ? "Showing" : "Closing") collection"
+    case .showCollectionOptions(let showing):
+      return "\(type(of: self)): \(showing ? "Showing" : "Closing") collection options"
     case .showLibraryOptions(let showing):
       return "\(type(of: self)): \(showing ? "Showing" : "Closing") library options"
     case .showAlbumDetail(let showing):
@@ -54,8 +54,8 @@ enum NavigationAction: AppAction {
       return "\(type(of: self)): \(showing ? "Showing" : "Hiding") playback links spinner"
     case .gettingSearchResults(let showing):
       return "\(type(of: self)): \(showing ? "Showing" : "Closing") search spinner"
-    case .setStackViewHeight(let height):
-      return "\(type(of: self)): Setting stack view height to \(height)"
+    case .setCollectionViewHeight(let height):
+      return "\(type(of: self)): Setting collection view height to \(height)"
     case .setLibraryViewHeight(let height):
       return "\(type(of: self)): Setting library view height to \(height)"
     case .reset:
@@ -74,8 +74,8 @@ enum NavigationAction: AppAction {
     case let .switchTab(toTab):
       newNavigation.selectedTab = toTab
     
-    case let .setActiveStackId(stackId):
-      newNavigation.activeStackId = stackId
+    case let .setActiveCollectionId(collectionId):
+      newNavigation.activeCollectionId = collectionId
       
     case let .setActiveSlotIndex(slotIndex):
       newNavigation.activeSlotIndex = slotIndex
@@ -86,11 +86,11 @@ enum NavigationAction: AppAction {
     case let .showSearch(showSearchState):
       newNavigation.showSearch = showSearchState
 
-    case let .showStack(showStackState):
-      newNavigation.showStack = showStackState
+    case let .showCollection(showCollectionState):
+      newNavigation.showCollection = showCollectionState
     
-    case let .showStackOptions(showStackOptionsState):
-      newNavigation.showStackOptions = showStackOptionsState
+    case let .showCollectionOptions(showCollectionOptionsState):
+      newNavigation.showCollectionOptions = showCollectionOptionsState
     
     case let .showLibraryOptions(showLibraryOptionsState):
       newNavigation.showLibraryOptions = showLibraryOptionsState
@@ -107,14 +107,14 @@ enum NavigationAction: AppAction {
     case let .gettingSearchResults(gettingSearchResultsState):
       newNavigation.gettingSearchResults = gettingSearchResultsState
       
-    case let .setStackViewHeight(viewHeight):
-      newNavigation.stackViewHeight = viewHeight
+    case let .setCollectionViewHeight(viewHeight):
+      newNavigation.collectionViewHeight = viewHeight
     
     case let .setLibraryViewHeight(viewHeight):
     newNavigation.libraryViewHeight = viewHeight
     
     case .reset:
-      newNavigation = Navigation(onRotationId: newNavigation.onRotationId, activeStackId: newNavigation.activeStackId)
+      newNavigation = Navigation(onRotationId: newNavigation.onRotationId, activeCollectionId: newNavigation.activeCollectionId)
       
     case .toggleDebug:
       newNavigation.showDebugMenu.toggle()

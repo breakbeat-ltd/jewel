@@ -14,13 +14,13 @@ struct Welcome: View {
   
   private let heading = "Welcome!"
   private let description = """
-  Stacks is a reminder and album curation app for your music.
+  Listen Later is a reminder and album curation app for your music.
 
-  Add music to your On Rotation stack as a reminder to listen later.
+  Add music to your On Rotation collection as a reminder to listen later.
 
-  Save Stacks to curate sets of albums that represent a theme or time you don't want to forget.
+  Save Collections to curate sets of albums that represent a theme or time you don't want to forget.
   """
-  private let startStackLabel = "Start Creating Stacks"
+  private let startCollectionLabel = "Start Creating Collections"
   
   var body: some View {
     RichAlert(heading: heading,
@@ -28,7 +28,7 @@ struct Welcome: View {
       Button {
         app.update(action: SettingsAction.firstTimeRun(false))
       } label: {
-        Text(startStackLabel)
+        Text(startCollectionLabel)
           .fontWeight(.bold)
       })
     {

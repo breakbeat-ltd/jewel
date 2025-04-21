@@ -12,21 +12,21 @@ import SwiftUI
 struct Navigation {
   
   var onRotationId: UUID?
-  var activeStackId: UUID?
+  var activeCollectionId: UUID?
   var activeSlotIndex: Int = 0
   
   var onRotationActive: Bool {
-    onRotationId == activeStackId
+    onRotationId == activeCollectionId
   }
   
   var selectedTab: Navigation.Tab = .onRotation {
     didSet {
-      activeStackId = onRotationId
+      activeCollectionId = onRotationId
     }
   }
   enum Tab: String {
     case onRotation = "On Rotation"
-    case library = "Stacks"
+    case library = "Collections"
   }
   
   var showSearch: Bool = false
@@ -37,8 +37,8 @@ struct Navigation {
   var gettingPlaybackLinks: Bool = false
   var gettingSearchResults: Bool = false
   
-  var showStack: Bool = false
-  var showStackOptions: Bool = false
+  var showCollection: Bool = false
+  var showCollectionOptions: Bool = false
   
   var showLibraryOptions: Bool = false
   
@@ -46,13 +46,13 @@ struct Navigation {
   var showDebugMenu: Bool = false
   
   var libraryViewHeight: CGFloat = 812
-  var stackCardHeight: CGFloat {
+  var collectionCardHeight: CGFloat {
     cardHeightFor(libraryViewHeight)
   }
   
-  var stackViewHeight: CGFloat = 812
+  var collectionViewHeight: CGFloat = 812
   var albumCardHeight: CGFloat {
-    cardHeightFor(stackViewHeight)
+    cardHeightFor(collectionViewHeight)
   }
   
   private func cardHeightFor(_ viewHeight: CGFloat) -> CGFloat {

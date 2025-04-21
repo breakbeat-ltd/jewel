@@ -44,9 +44,9 @@ struct AppleMusicAuthorization: View {
   private var authorizationStatement: String {
     switch appleMusicAuthorizationStatus {
     case .restricted:
-      return "Stacks cannot be used on this device because usage of Apple Music is restricted."
+      return "Listen Later cannot be used on this device because usage of Apple Music is restricted."
     default:
-      return "Stacks uses the Apple Music catalogue to browse and save music."
+      return "Listen Later uses the Apple Music catalogue to browse and save music."
     }
   }
   

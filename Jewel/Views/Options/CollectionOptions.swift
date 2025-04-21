@@ -1,5 +1,5 @@
 //
-//  Options.swift
+//  CollectionOptions.swift
 //  Jewel
 //
 //  Created by Greg Hepworth on 31/05/2020.
@@ -8,44 +8,44 @@
 
 import SwiftUI
 
-struct StackOptions: View {
+struct CollectionOptions: View {
   
   @EnvironmentObject private var app: AppEnvironment
   
-  private var stack: Stack? {
+  private var collection: Collection? {
     if app.state.navigation.onRotationActive {
       return app.state.library.onRotation
     } else {
-      return app.state.library.stacks.first(where: { $0.id == app.state.navigation.activeStackId })
+      return app.state.library.collections.first(where: { $0.id == app.state.navigation.activeCollectionId })
     }
   }
-  private var stackEmpty: Bool {
-    stack?.slots.filter( { $0.album != nil }).count == 0
+  private var collectionEmpty: Bool {
+    collection?.slots.filter( { $0.album != nil }).count == 0
   }
   
-  @State private var newStackName: String = ""
+  @State private var newCollectionName: String = ""
   @FocusState private var nameFocussed: Bool
   
   var body: some View {
-    if let stack = stack { // this if has to be outside the NavigationView else LibraryAction.removeStack creates an exception ¯\_(ツ)_/¯
+    if let collection = collection { // this if has to be outside the NavigationView else LibraryAction.removeCollection creates an exception ¯\_(ツ)_/¯
       NavigationView {
         Form {
           if !app.state.navigation.onRotationActive {
             Section {
               HStack {
-                Text("Stack Name")
+                Text("Collection Name")
                   .font(.body)
                 TextField(
-                  stack.name,
-                  text: $newStackName
+                  collection.name,
+                  text: $newCollectionName
                 )
                 .focused($nameFocussed)
                 .onAppear {
-                  self.newStackName = stack.name
+                  self.newCollectionName = collection.name
                 }
                 .onChange(of: nameFocussed) {
-                  if !newStackName.isEmpty && newStackName != stack.name {
-                    app.update(action: LibraryAction.setStackName(name: newStackName.trimmingCharacters(in: .whitespaces), stackId: stack.id))
+                  if !newCollectionName.isEmpty && newCollectionName != collection.name {
+                    app.update(action: LibraryAction.setCollectionName(name: newCollectionName.trimmingCharacters(in: .whitespaces), collectionId: collection.id))
                   }
                 }
                 .font(.body)
@@ -57,54 +57,54 @@ struct StackOptions: View {
             if app.state.navigation.onRotationActive {
               Button {
                 app.update(action: NavigationAction.switchTab(to: .library))
-                app.update(action: NavigationAction.showStackOptions(false))
-                app.update(action: LibraryAction.saveOnRotation(stack: app.state.library.onRotation))
+                app.update(action: NavigationAction.showCollectionOptions(false))
+                app.update(action: LibraryAction.saveOnRotation(collection: app.state.library.onRotation))
               } label: {
                 HStack {
                   Text(Image(systemName: "arrow.right.square"))
                     .font(.body)
                     .frame(width: Constants.optionsButtonIconWidth)
-                  Text("Save Stack")
+                  Text("Save Collection")
                     .font(.body)
                 }
               }
             } else {
               Button {
-                app.update(action: LibraryAction.duplicateStack(stack: stack))
-                app.update(action: NavigationAction.showStackOptions(false))
-                app.update(action: NavigationAction.showStack(false))
+                app.update(action: LibraryAction.duplicateCollection(collection: collection))
+                app.update(action: NavigationAction.showCollectionOptions(false))
+                app.update(action: NavigationAction.showCollection(false))
               } label: {
                 HStack {
                   Text(Image(systemName: "doc.on.doc"))
                     .font(.body)
                     .frame(width: Constants.optionsButtonIconWidth)
-                  Text("Duplicate Stack")
+                  Text("Duplicate Collection")
                     .font(.body)
                 }
               }
               Button {
-                app.update(action: LibraryAction.removeStack(stackId: stack.id))
-                app.update(action: NavigationAction.showStackOptions(false))
-                app.update(action: NavigationAction.showStack(false))
+                app.update(action: LibraryAction.removeCollection(collectionId: collection.id))
+                app.update(action: NavigationAction.showCollectionOptions(false))
+                app.update(action: NavigationAction.showCollection(false))
               } label: {
                 HStack {
                   Text(Image(systemName: "delete.left"))
                     .font(.body)
                     .frame(width: Constants.optionsButtonIconWidth)
-                  Text("Delete Stack")
+                  Text("Delete Collection")
                     .font(.body)
                 }
-                .foregroundColor(stackEmpty ? nil : .red)
+                .foregroundColor(collectionEmpty ? nil : .red)
               }
             }
           }
-          .disabled(stackEmpty)
+          .disabled(collectionEmpty)
         }
-        .navigationBarTitle("\(app.state.navigation.onRotationActive ? Navigation.Tab.onRotation.rawValue : "Stack") Options", displayMode: .inline)
+        .navigationBarTitle("\(app.state.navigation.onRotationActive ? Navigation.Tab.onRotation.rawValue : "Collection") Options", displayMode: .inline)
         .navigationBarItems(
           leading:
             Button {
-              app.update(action: NavigationAction.showStackOptions(false))
+              app.update(action: NavigationAction.showCollectionOptions(false))
             } label: {
               Text("Close")
                 .font(.body)

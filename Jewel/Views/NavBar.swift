@@ -32,7 +32,7 @@ struct NavBar: View {
         .frame(maxWidth: 300)
         Spacer()
         if app.state.navigation.selectedTab == .onRotation {
-          StackActionButtons()
+          CollectionActionButtons()
         } else {
           LibraryActionButtons()
         }
@@ -45,28 +45,28 @@ struct NavBar: View {
   }
 }
 
-struct StackActionButtons: View {
+struct CollectionActionButtons: View {
   
   @EnvironmentObject var app: AppEnvironment
   
-  private var showStackOptions: Binding<Bool> { Binding (
-    get: { app.state.navigation.showStackOptions },
-    set: { if app.state.navigation.showStackOptions { app.update(action: NavigationAction.showStackOptions($0)) } }
+  private var showCollectionOptions: Binding<Bool> { Binding (
+    get: { app.state.navigation.showCollectionOptions },
+    set: { if app.state.navigation.showCollectionOptions { app.update(action: NavigationAction.showCollectionOptions($0)) } }
   )}
   
   var body: some View {
     HStack {
       Spacer()
       Button {
-        app.update(action: NavigationAction.showStackOptions(true))
+        app.update(action: NavigationAction.showCollectionOptions(true))
       } label: {
         Text(Image(systemName: "ellipsis"))
           .font(.body)
           .foregroundColor(Color(UIColor.secondaryLabel))
       }
       .padding(.leading)
-      .sheet(isPresented: showStackOptions) {
-        StackOptions()
+      .sheet(isPresented: showCollectionOptions) {
+        CollectionOptions()
           .environmentObject(app)
       }
     }
@@ -83,9 +83,9 @@ struct LibraryActionButtons: View {
     HStack {
       Spacer()
       Button {
-        app.update(action: LibraryAction.createStack)
-        app.update(action: NavigationAction.setActiveStackId(stackId: app.state.library.stacks.first!.id))
-        app.update(action: NavigationAction.showStack(true))
+        app.update(action: LibraryAction.createCollection)
+        app.update(action: NavigationAction.setActiveCollectionId(collectionId: app.state.library.collections.first!.id))
+        app.update(action: NavigationAction.showCollection(true))
       } label: {
         Text(Image(systemName: "plus"))
           .font(.body)

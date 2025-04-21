@@ -13,7 +13,7 @@ struct SearchResults: View {
   
   @EnvironmentObject var app: AppEnvironment
   
-  let stackId: UUID
+  let collectionId: UUID
   let slotIndex: Int
   
   private var searchResults: MusicItemCollection<Album>? {
@@ -64,12 +64,12 @@ struct SearchResults: View {
   private func addAlbum(withId albumId: MusicItemID) {
     Task {
       async let album = RecordStore.getAlbum(withId: albumId)
-      try? await app.update(action: LibraryAction.addAlbumToSlot(album: album, slotIndex: slotIndex, stackId: stackId))
+      try? await app.update(action: LibraryAction.addAlbumToSlot(album: album, slotIndex: slotIndex, collectionId: collectionId))
       
       if let baseUrl = try? await album.url {
         app.update(action: NavigationAction.gettingPlaybackLinks(true))
         async let playbackLinks = RecordStore.getPlaybackLinks(for: baseUrl)
-        try? app.update(action: LibraryAction.setPlaybackLinks(baseUrl: baseUrl, playbackLinks: await playbackLinks, stackId: stackId))
+        try? app.update(action: LibraryAction.setPlaybackLinks(baseUrl: baseUrl, playbackLinks: await playbackLinks, collectionId: collectionId))
         app.update(action: NavigationAction.gettingPlaybackLinks(false))
       }
     }
