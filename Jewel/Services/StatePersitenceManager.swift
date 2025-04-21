@@ -68,11 +68,82 @@ enum StatePersitenceManager {
   struct StateMigrations {
     
     fileprivate static func runMigrations() {
+      JewelLogger.persistence.info("💎 Persistence > Running migrations")
       migrate_v2_0_to_v2_1()
       migrate_v2_1_to_v3_0()
+      migrate_v3_0_to_v3_1()
       
       UserDefaults.standard.synchronize()
     }
+    
+    private static func migrate_v3_0_to_v3_1() {
+      JewelLogger.persistence.info("💎 Persistence > Looking for a v3.0 saved state")
+      guard let v3_0_StateData = UserDefaults.standard.object(forKey: AppState_v3_0.versionKey) as? Data else {
+        JewelLogger.persistence.info("💎 Persistence > No v3.0 saved state found")
+        return
+      }
+      
+      JewelLogger.persistence.info("💎 Persistence > Found a v3.0 saved state, migrating to v3.1")
+      
+      do {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let v3_0_State = try decoder.decode(AppState_v3_0.self, from: v3_0_StateData)
+        
+        let migratedSettings = Settings(preferredMusicPlatform: v3_0_State.settings.preferredMusicPlatform, firstTimeRun: false)
+        
+        var migratedOnRotationSlots = [Slot]()
+        for oldSlot in v3_0_State.library.onRotation.slots {
+          let migratedSlot = Slot(id: oldSlot.id,
+                                  album: oldSlot.album,
+                                  playbackLinks: oldSlot.playbackLinks)
+          migratedOnRotationSlots.append(migratedSlot)
+        }
+        
+        let migratedOnRotationStack = Stack(id: v3_0_State.library.onRotation.id,
+                                            name: v3_0_State.library.onRotation.name,
+                                            slots: migratedOnRotationSlots)
+        
+        var migratedLibraryStacks = [Stack]()
+        for oldStack in v3_0_State.library.stacks {
+          var migratedStackSlots = [Slot]()
+          for oldSlot in oldStack.slots {
+            let migratedSlot = Slot(id: oldSlot.id,
+                                    album: oldSlot.album,
+                                    playbackLinks: oldSlot.playbackLinks)
+            migratedStackSlots.append(migratedSlot)
+          }
+          
+          let migratedStack = Stack(id: oldStack.id,
+                                    name: oldStack.name,
+                                    slots: migratedStackSlots)
+          migratedLibraryStacks.append(migratedStack)
+        }
+        
+        let migratedLibrary = Library(onRotation: migratedOnRotationStack,
+                                      stacks: migratedLibraryStacks)
+        
+        let v3_1_State = AppState(settings: migratedSettings,
+                                  library: migratedLibrary)
+        
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        let encodedState = try encoder.encode(v3_1_State)
+        UserDefaults.standard.set(encodedState, forKey: AppState.versionKey)
+        
+        JewelLogger.persistence.info("💎 Persistence > Migration successful, deleting v3.0 saved state")
+        UserDefaults.standard.removeObject(forKey: AppState_v3_0.versionKey)
+        
+        UserDefaults.standard.synchronize()
+      } catch {
+        JewelLogger.persistence.debug("💎 Persistence > Error migrating a v3.0 state: \(error.localizedDescription)")
+        // Something's gone wrong and we haven't handled it, but now a new state will be created and take precedence
+        // so to avoid future problems we should remove the remnants of the old state.
+        UserDefaults.standard.removeObject(forKey: AppState_v3_0.versionKey)
+      }
+      
+    }
+    
     
     private static func migrate_v2_1_to_v3_0() {
       
