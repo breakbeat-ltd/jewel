@@ -1,5 +1,5 @@
 //
-//  Stack.swift
+//  Collection.swift
 //  Jewel
 //
 //  Created by Greg Hepworth on 01/06/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Stack: Identifiable, Codable {
+struct Collection: Identifiable, Codable {
   var id = UUID()
   var name: String
   var slots: [Slot] = {

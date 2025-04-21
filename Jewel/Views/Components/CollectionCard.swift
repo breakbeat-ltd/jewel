@@ -1,5 +1,5 @@
 //
-//  StackCard.swift
+//  CollectionCard.swift
 //  Jewel
 //
 //  Created by Greg Hepworth on 05/06/2020.
@@ -8,15 +8,15 @@
 
 import SwiftUI
 
-struct StackCard: View {
+struct CollectionCard: View {
   
   @EnvironmentObject var app: AppEnvironment
   
-  let stack: Stack
+  let collection: Collection
   
-  private var stackArtwork: [URL] {
+  private var collectionArtwork: [URL] {
     var artworkUrls = [URL]()
-    for slot in stack.slots {
+    for slot in collection.slots {
       if let artworkUrl = slot.album?.artwork?.url(width: 1000, height: 1000) {
         artworkUrls.append(artworkUrl)
       }
@@ -26,19 +26,19 @@ struct StackCard: View {
   
   var body: some View {
     Button {
-      app.update(action: NavigationAction.setActiveStackId(stackId: stack.id))
-      app.update(action: NavigationAction.showStack(true))
+      app.update(action: NavigationAction.setActiveCollectionId(collectionId: collection.id))
+      app.update(action: NavigationAction.showCollection(true))
     } label: {
       ZStack(alignment: .bottom) {
         Rectangle()
           .foregroundColor(.clear)
           .background(
-            CardArtworkComposite(images: stackArtwork)
+            CardArtworkComposite(images: collectionArtwork)
           )
           .cornerRadius(Constants.cardCornerRadius)
           .shadow(radius: 3)
         HStack(alignment: .bottom) {
-          Text(stack.name)
+          Text(collection.name)
             .font(.callout)
             .fontWeight(.bold)
             .foregroundColor(.white)
