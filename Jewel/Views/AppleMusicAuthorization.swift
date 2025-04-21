@@ -1,6 +1,6 @@
 //
 //  AppleMusicAuthorization.swift
-//  Stacks
+//  Jewel
 //
 //  Created by Greg Hepworth on 07/11/2021.
 //  Copyright © 2021 Breakbeat Ltd. All rights reserved.

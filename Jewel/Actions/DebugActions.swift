@@ -1,6 +1,6 @@
 //
 //  DebugActions.swift
-//  Stacks
+//  Jewel
 //
 //  Created by Greg Hepworth on 30/08/2023.
 //  Copyright © 2023 Breakbeat Ltd. All rights reserved.
