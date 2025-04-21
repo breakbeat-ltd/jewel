@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D22155772481114A00A1F04A"
-               BuildableName = "Stacks.app"
-               BlueprintName = "Stacks"
+               BuildableName = "Listen Later.app"
+               BlueprintName = "Listen Later"
                ReferencedContainer = "container:Jewel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D22155772481114A00A1F04A"
-            BuildableName = "Stacks.app"
-            BlueprintName = "Stacks"
+            BuildableName = "Listen Later.app"
+            BlueprintName = "Listen Later"
             ReferencedContainer = "container:Jewel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D22155772481114A00A1F04A"
-            BuildableName = "Stacks.app"
-            BlueprintName = "Stacks"
+            BuildableName = "Listen Later.app"
+            BlueprintName = "Listen Later"
             ReferencedContainer = "container:Jewel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
