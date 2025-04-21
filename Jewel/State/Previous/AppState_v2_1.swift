@@ -1,6 +1,6 @@
 //
 //  AppState_v2_1.swift
-//  Stacks
+//  Jewel
 //
 //  Created by Greg Hepworth on 01/01/2024.
 //  Copyright © 2024 Breakbeat Ltd. All rights reserved.

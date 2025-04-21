@@ -1,6 +1,6 @@
 //
 //  JewelLogger.swift
-//  Stacks
+//  Jewel
 //
 //  Created by Greg Hepworth on 15/04/2025.
 //  Copyright © 2025 Breakbeat Ltd. All rights reserved.

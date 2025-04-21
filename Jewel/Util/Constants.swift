@@ -1,6 +1,6 @@
 //
 //  Helpers.swift
-//  Stacks
+//  Jewel
 //
 //  Created by Greg Hepworth on 11/06/2020.
 //  Copyright © 2020 Breakbeat Ltd. All rights reserved.
