@@ -53,8 +53,12 @@ struct PlaybackLinks: View {
               .environmentObject(app)
           }
         } else if app.state.navigation.gettingPlaybackLinks {
-          ProgressView()
-            .padding()
+          Button {
+
+          } label: {
+            ProgressView()
+          }
+          .buttonStyle(.bordered)
         }
       }
     }
