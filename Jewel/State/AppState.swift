@@ -24,34 +24,4 @@ struct AppState: Codable {
     case library
   }
   
-  static func updateState(appState: AppState, action: AppAction) -> AppState {
-    
-    JewelLogger.stateUpdate.info("💎 State Update > \(action.description)")
-    
-    var newAppState = appState
-    
-    switch action {
-      
-    case is NavigationAction:
-      newAppState.navigation = NavigationAction.updateNavigation(navigation: newAppState.navigation, action: action as! NavigationAction)
-      
-    case is SettingsAction:
-      newAppState.settings = SettingsAction.updateSettings(settings: newAppState.settings, action: action as! SettingsAction)
-      
-    case is LibraryAction:
-      newAppState.library = LibraryAction.updateLibrary(library: newAppState.library, action: action as! LibraryAction)
-      
-    case is SearchAction:
-      newAppState.search = SearchAction.updateSearch(search: newAppState.search, action: action as! SearchAction)
-      
-    case is DebugAction:
-      newAppState = DebugAction.debugUpdate(state: newAppState, action: action as! DebugAction)
-      
-    default: break
-      
-    }
-    
-    return newAppState
-  }
-  
 }

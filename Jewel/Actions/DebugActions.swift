@@ -20,11 +20,11 @@ enum DebugAction: AppAction {
     }
   }
   
-  static func debugUpdate(state: AppState, action: DebugAction) -> AppState {
+  func update(state: AppState) -> AppState {
     
     var newState = state
     
-    switch action {
+    switch self {
       
     case .loadScreenshotState:
       guard let stateScreenshotData = NSDataAsset(name: "StateScreenshotData") else {

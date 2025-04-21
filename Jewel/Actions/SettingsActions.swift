@@ -25,17 +25,17 @@ enum SettingsAction: AppAction {
     }
   }
   
-  static func updateSettings(settings: Settings, action: SettingsAction) -> Settings {
+  func update(state: AppState) -> AppState {
     
-    var newSettings = settings
+    var newState = state
     
-    switch action {
+    switch self {
       
     case let .firstTimeRun(firstTimeRunState):
-      newSettings.firstTimeRun = firstTimeRunState
+      newState.settings.firstTimeRun = firstTimeRunState
       
     case let .setPreferredPlatform(platform):
-      newSettings.preferredMusicPlatform = platform
+      newState.settings.preferredMusicPlatform = platform
       
     case .reset:
       if let domain = Bundle.main.bundleIdentifier {
@@ -45,7 +45,7 @@ enum SettingsAction: AppAction {
       
     }
     
-    return newSettings
+    return newState
   }
   
 }

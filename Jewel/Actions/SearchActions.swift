@@ -23,21 +23,21 @@ enum SearchAction: AppAction {
     }
   }
   
-  static func updateSearch(search: Search, action: SearchAction) -> Search {
+  func update(state: AppState) -> AppState {
     
-    var newSearch = search
+    var newState = state
     
-    switch action {
+    switch self {
       
     case let .populateSearchResults(results):
-      newSearch.results = results
+      newState.search.results = results
       
     case .removeSearchResults:
-      newSearch.results = nil
+      newState.search.results = nil
       
     }
     
-    return newSearch
+    return newState
   }
   
 }

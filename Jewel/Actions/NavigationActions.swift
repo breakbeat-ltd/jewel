@@ -65,63 +65,63 @@ enum NavigationAction: AppAction {
     }
   }
   
-  static func updateNavigation(navigation: Navigation, action: NavigationAction) -> Navigation {
+  func update(state: AppState) -> AppState {
     
-    var newNavigation = navigation
+    var newState = state
     
-    switch action {
+    switch self {
       
     case let .switchTab(toTab):
-      newNavigation.selectedTab = toTab
+      newState.navigation.selectedTab = toTab
     
     case let .setActiveCollectionId(collectionId):
-      newNavigation.activeCollectionId = collectionId
+      newState.navigation.activeCollectionId = collectionId
       
     case let .setActiveSlotIndex(slotIndex):
-      newNavigation.activeSlotIndex = slotIndex
+      newState.navigation.activeSlotIndex = slotIndex
     
     case let .showSettings(showSettingsState):
-      newNavigation.showSettings = showSettingsState
+      newState.navigation.showSettings = showSettingsState
       
     case let .showSearch(showSearchState):
-      newNavigation.showSearch = showSearchState
+      newState.navigation.showSearch = showSearchState
 
     case let .showCollection(showCollectionState):
-      newNavigation.showCollection = showCollectionState
+      newState.navigation.showCollection = showCollectionState
     
     case let .showCollectionOptions(showCollectionOptionsState):
-      newNavigation.showCollectionOptions = showCollectionOptionsState
+      newState.navigation.showCollectionOptions = showCollectionOptionsState
     
     case let .showLibraryOptions(showLibraryOptionsState):
-      newNavigation.showLibraryOptions = showLibraryOptionsState
+      newState.navigation.showLibraryOptions = showLibraryOptionsState
       
     case let .showAlbumDetail(showAlbumDetailState):
-      newNavigation.showAlbumDetail = showAlbumDetailState
+      newState.navigation.showAlbumDetail = showAlbumDetailState
     
     case let .showPlaybackLinks(showPlaybackLinksState):
-      newNavigation.showPlaybackLinks = showPlaybackLinksState
+      newState.navigation.showPlaybackLinks = showPlaybackLinksState
     
     case let .gettingPlaybackLinks(gettingPlaybackLinksState):
-      newNavigation.gettingPlaybackLinks = gettingPlaybackLinksState
+      newState.navigation.gettingPlaybackLinks = gettingPlaybackLinksState
     
     case let .gettingSearchResults(gettingSearchResultsState):
-      newNavigation.gettingSearchResults = gettingSearchResultsState
+      newState.navigation.gettingSearchResults = gettingSearchResultsState
       
     case let .setCollectionViewHeight(viewHeight):
-      newNavigation.collectionViewHeight = viewHeight
+      newState.navigation.collectionViewHeight = viewHeight
     
     case let .setLibraryViewHeight(viewHeight):
-    newNavigation.libraryViewHeight = viewHeight
+    newState.navigation.libraryViewHeight = viewHeight
     
     case .reset:
-      newNavigation = Navigation(onRotationId: newNavigation.onRotationId, activeCollectionId: newNavigation.activeCollectionId)
+      newState.navigation = Navigation(onRotationId: newState.navigation.onRotationId, activeCollectionId: newState.navigation.activeCollectionId)
       
     case .toggleDebug:
-      newNavigation.showDebugMenu.toggle()
+      newState.navigation.showDebugMenu.toggle()
     
     }
     
-    return newNavigation
+    return newState
     
   }
   

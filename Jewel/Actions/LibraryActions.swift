@@ -54,28 +54,28 @@ enum LibraryAction: AppAction {
     }
   }
   
-  static func updateLibrary(library: Library, action: LibraryAction) -> Library {
+  func update(state: AppState) -> AppState {
+    
+    var newState = state
     
     func extractCollection(collectionId: UUID) -> Collection? {
-      if newLibrary.onRotation.id == collectionId {
-        return newLibrary.onRotation
-      } else if let collectionIndex = newLibrary.collections.firstIndex(where: { $0.id == collectionId }) {
-        return newLibrary.collections[collectionIndex]
+      if newState.library.onRotation.id == collectionId {
+        return newState.library.onRotation
+      } else if let collectionIndex = newState.library.collections.firstIndex(where: { $0.id == collectionId }) {
+        return newState.library.collections[collectionIndex]
       }
       return nil
     }
     
     func commitCollection(collection: Collection) {
-      if collection.id == newLibrary.onRotation.id {
-        newLibrary.onRotation = collection
-      } else if let collectionIndex = newLibrary.collections.firstIndex(where: { $0.id == collection.id }) {
-        newLibrary.collections[collectionIndex] = collection
+      if collection.id == newState.library.onRotation.id {
+        newState.library.onRotation = collection
+      } else if let collectionIndex = newState.library.collections.firstIndex(where: { $0.id == collection.id }) {
+        newState.library.collections[collectionIndex] = collection
       }
     }
     
-    var newLibrary = library
-    
-    switch action {
+    switch self {
       
     case let .setCollectionName(name, collectionId):
       if var collection = extractCollection(collectionId: collectionId) {
@@ -102,23 +102,23 @@ enum LibraryAction: AppAction {
       var newCollection = collection
       newCollection.id = UUID()
       newCollection.name = "\(Navigation.Tab.onRotation.rawValue) (\(dateString))"
-      newLibrary.collections.insert(newCollection, at: 0)
+      newState.library.collections.insert(newCollection, at: 0)
       
     case .createCollection:
       let newCollection = Collection(name: "New Collection")
-      newLibrary.collections.insert(newCollection, at: 0)
+      newState.library.collections.insert(newCollection, at: 0)
       
     case let .addCollection(collection):
-      newLibrary.collections.insert(collection, at: 0)
+      newState.library.collections.insert(collection, at: 0)
       
     case let .duplicateCollection(collection):
       var duplicatedCollection = collection
       duplicatedCollection.id = UUID()
       duplicatedCollection.name = "Copy of \(collection.name)"
-      newLibrary.collections.insert(duplicatedCollection, at: 0)
+      newState.library.collections.insert(duplicatedCollection, at: 0)
       
     case let .removeCollection(collectionId):
-      newLibrary.collections.removeAll(where: { $0.id == collectionId })
+      newState.library.collections.removeAll(where: { $0.id == collectionId })
       
     case let .setPlaybackLinks(baseUrl, playbackLinks, collectionId):
       if var collection = extractCollection(collectionId: collectionId) {
@@ -131,7 +131,7 @@ enum LibraryAction: AppAction {
       
     }
     
-    return newLibrary
+    return newState
     
   }
   
