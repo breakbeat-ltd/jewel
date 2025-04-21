@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		D22155782481114A00A1F04A /* Jewel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jewel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D22155782481114A00A1F04A /* Listen Later.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Listen Later.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -18,7 +18,7 @@
 				Assets.xcassets,
 				JewelApp.swift,
 			);
-			target = D22155772481114A00A1F04A /* Jewel */;
+			target = D22155772481114A00A1F04A /* Listen Later */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -53,7 +53,7 @@
 		D22155792481114A00A1F04A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D22155782481114A00A1F04A /* Jewel.app */,
+				D22155782481114A00A1F04A /* Listen Later.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,9 +74,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D22155772481114A00A1F04A /* Jewel */ = {
+		D22155772481114A00A1F04A /* Listen Later */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D221558C2481114B00A1F04A /* Build configuration list for PBXNativeTarget "Jewel" */;
+			buildConfigurationList = D221558C2481114B00A1F04A /* Build configuration list for PBXNativeTarget "Listen Later" */;
 			buildPhases = (
 				D22155742481114A00A1F04A /* Sources */,
 				D22155752481114A00A1F04A /* Frameworks */,
@@ -93,11 +93,11 @@
 				D2FC6A4A2DAEFB1B006F744D /* Services */,
 				D2FC6A502DAEFB1F006F744D /* Util */,
 			);
-			name = Jewel;
+			name = "Listen Later";
 			packageProductDependencies = (
 			);
 			productName = Jewel;
-			productReference = D22155782481114A00A1F04A /* Jewel.app */;
+			productReference = D22155782481114A00A1F04A /* Listen Later.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -131,7 +131,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D22155772481114A00A1F04A /* Jewel */,
+				D22155772481114A00A1F04A /* Listen Later */,
 			);
 		};
 /* End PBXProject section */
@@ -343,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D221558C2481114B00A1F04A /* Build configuration list for PBXNativeTarget "Jewel" */ = {
+		D221558C2481114B00A1F04A /* Build configuration list for PBXNativeTarget "Listen Later" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D221558D2481114B00A1F04A /* Debug */,
